@@ -16,37 +16,33 @@ private:
 public:
     Queue() : front(nullptr), rear(nullptr), count(0) {}
 
-    // Enqueue operation
     void enqueue(int value) {
         Node* newNode = new Node(value);
         if (rear) {
-            rear->next = newNode; // Link the old rear to the new node
+            rear->next = newNode; 
         }
-        rear = newNode; // Update the rear to the new node
+        rear = newNode; 
         if (!front) {
-            front = newNode; // If the queue was empty, front is also the new node
+            front = newNode;
         }
         count++;
     }
-
-    // Dequeue operation
     int dequeue() {
         if (isEmpty()) {
             std::cerr << "Queue is empty. Cannot dequeue." << std::endl;
-            return -1; // Indicate an error
+            return -1; 
         }
         Node* temp = front;
-        int value = front->data; // Get the value to return
-        front = front->next; // Move front to the next node
-        delete temp; // Free the old front
+        int value = front->data; 
+        front = front->next;
+        delete temp; 
         count--;
         if (isEmpty()) {
-            rear = nullptr; // If the queue becomes empty, update rear
+            rear = nullptr; 
         }
         return value;
     }
 
-    // Peek operation
     int peek() {
         if (isEmpty()) {
             std::cerr << "Queue is empty. Cannot peek." << std::endl;
